@@ -23,7 +23,7 @@ Strata-GLMでGLM-5.3-Flashを動かし、Colab内でチャットするための�
 
 ## モデルの選択
 
-モデルは **通常版（Unsloth）／Abliterated版（Huihui）** の2択です。Huihui版は [`huihui-ai/Huihui-GLM-5.3-Flash-abliterated-GGUF`](https://huggingface.co/huihui-ai/Huihui-GLM-5.3-Flash-abliterated-GGUF) のUD-IQ4_XSで、Strata-GLM上流の測定に使われた派生版です。このColabでの実ロード・回答はまだ未検証です。
+モデルは **通常版（Unsloth）／Abliterated版（Huihui）** の2択です。Huihui版は [`huihui-ai/Huihui-GLM-5.3-Flash-abliterated-GGUF`](https://huggingface.co/huihui-ai/Huihui-GLM-5.3-Flash-abliterated-GGUF) のUD-IQ4_XSで、Strata-GLM上流の測定に使われた派生版です。**新しいColabランタイムで取得・ビルド・起動し、ブラウザからテキスト、画像、文書＋URLの回答を確認済み**です（2026-10-12、A100 80GB・RAM167.1GiB）。長時間安定性・通常版との品質比較は未検証です。
 
 各モデル約157GBのため、切替時は会話を保存してランタイムを削除し、新しいランタイムで選び直してください。別モデルの重み・pack・キャッシュは混用しません。固定版と検証範囲は [COLAB.md](COLAB.md#モデルの選択) に記載しています。
 
