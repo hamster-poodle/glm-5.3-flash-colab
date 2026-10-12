@@ -31,6 +31,8 @@ Strata-GLMで動かす、画像・文書・URL入力に対応したチャット�
 
 ## 検証・出典
 
+異常な計算結果を検知し、内部状態のリセットと最大1回の再試行を行うGLM専用対策を追加しました。失敗時も質問・添付を保持します。[v0.1.43情報の採用方針と検証](COLAB.md#v0143情報の採用方針)をご覧ください。
+
 **A100 80GB・RAM167.1GiBでテキスト／画像／文書＋URLの回答を確認済み。** Huihui版は新規ランタイムで取得・ビルドから検証しました（2026-10-12）。長時間安定性・両モデルの品質比較は未検証です。
 
 [詳細・実測・トラブル対応](COLAB.md) · [Strata-GLM](https://github.com/isichan-ai/Strata-GLM) · [通常版モデル](https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF) · [Huihuiモデル](https://huggingface.co/huihui-ai/Huihui-GLM-5.3-Flash-abliterated-GGUF)
