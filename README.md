@@ -19,6 +19,19 @@ Strata-GLMでGLM-5.3-Flashを動かし、Colab内でチャットするための�
 
 詳細は **[実行手順・環境・トラブル対応（COLAB.md）](COLAB.md)** を参照してください。
 
+## 推奨プラン・申込先
+
+**個人でこれから始めるなら、今回の動作確認に使ったGoogle AI Proを第一候補にしてください。** 公式ヘルプではColabの200 CCUが案内されています。すでにA100を利用できるColab契約がある場合は、その契約を使えます。
+
+- **個人向け： [Google AI Proのプラン・申込み](https://one.google.com/about/google-ai-plans/)** — 料金・Colab特典は購入するアカウントの画面で確認してください。
+- **Colab中心の利用： [Colab有料プラン](https://colab.research.google.com/signup)** — Colab Pro / Pro+等の提供状況を確認できます。会社・学校のアカウントは、管理者によるColab有効化・ライセンス割当も確認してください。
+
+Google AI Proの**無料体験にはColab特典が含まれません**。ストレージのみのGoogle One契約や、家族から共有された特典だけで利用できるとも限りません。実行するアカウント本人の適用条件を確認してください。高額なUltraへの加入を、このノートブックの必須条件にはしていません。
+
+**有料プランでもA100 80GBの割当は保証されません。** 加入後は同じアカウントでColabのCU残高・A100選択可否を確認し、ノートブックのセクション1で実際のGPUとRAMを確認してください。
+
+公式情報（2026-10-12確認）：[Google AI ProのColab特典・対象条件](https://support.google.com/googleone/answer/14534406?hl=en)、[Colab FAQ](https://research.google.com/colaboratory/faq.html)。
+
 ## 動作確認の結果
 
 | 項目 | 実測・設定 |

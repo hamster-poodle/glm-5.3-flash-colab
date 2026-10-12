@@ -14,6 +14,21 @@ Googleへのログインだけでは実行条件を満たしません。実行�
 
 ## 実行手順
 
+### 事前準備：プランを選ぶ
+
+個人で新しく始める場合は、今回の検証に使った **[Google AI Pro](https://one.google.com/about/google-ai-plans/)** を第一候補とします。公式ヘルプでは200 CCUが案内されています。料金とColab特典は、自分のアカウントの申込画面で確認してください。すでにA100を使える契約がある人は、追加加入せずその契約を利用できます。
+
+Colabだけを中心に使いたい場合は **[Colab有料プラン](https://colab.research.google.com/signup)** も比較してください。会社・学校のGoogle Workspaceアカウントでは、管理者によるColab有効化・Colab Pro / Pro+ライセンス割当を確認します。
+
+- Google AIプランの無料体験にはColab特典が含まれません。ストレージのみのGoogle Oneプランも対象外です。
+- Google AI Proの公式対象条件には18歳以上・Google Oneファミリープランの管理者が示されています。家族共有先での利用を前提にせず、本人のアカウントで確認してください。
+- Ultraへの加入を必須とはしていません。どの有料プランでもA100 80GBの割当保証はありません。
+- 契約と同じアカウントでColabへログインし、CU残高・A100の選択可否を確認してから進みます。
+
+公式情報（2026-10-12確認）：[Google AI Pro特典](https://support.google.com/googleone/answer/14534406?hl=en)、[Colab FAQ](https://research.google.com/colaboratory/faq.html)、[WorkspaceでのColab契約](https://support.google.com/a/answer/15094583?hl=en)。
+
+### ノートブックを実行する
+
 1. https://colab.research.google.com/ で「ノートブックを開く → アップロード」からipynbを開く。
 2. 「ランタイム → ランタイムのタイプを変更」でA100 GPUと高RAMを選ぶ。
 3. **1：環境確認**を実行し、実際のGPU・RAM・ディスクを確認する。
