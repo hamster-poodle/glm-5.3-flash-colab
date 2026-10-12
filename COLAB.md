@@ -2,9 +2,7 @@
 
 [GitHubのトップページ](https://github.com/hamster-poodle/glm-5.3-flash-colab)にある **Open in Colab** を押すと始められます。ファイルのダウンロードやアップロードは不要です。修正コードはノートブックに内蔵しています。
 
-## 必要な環境
-
-### モデルの選択
+## モデルの選択
 
 起動フォームの「モデル」で選択します。どちらもStrata-GLMとUD-IQ4_XSを使用します。
 
@@ -20,6 +18,8 @@ Huihui版はStrata-GLMのREADMEで速度測定に使われた派生版です。a
 検証範囲：通常版のColab実測は下記のとおり。Huihui版は2026-10-12、新しいA100-SXM4-80GB・RAM167.1GiBのランタイムで、起動フォームの選択から全5シャード取得・ビルド・画像対応・モデル起動まで完了しました。GPU expert cache 66.36GiB、RAM常駐67.46GiB、APIモデル名 `glm-5.3-flash-huihui-strata`、実GGUF・pack・画像用重みの参照先を確認しています。
 
 ブラウザE2Eでは、テキスト計算 `37×2 → 74`（9.3秒）、ファイル選択から1440×1800pxのPNGを添付して `HUIHUI 628／緑色`（35.9秒）、TXT添付＋example.comのURL取得後にCtrl+Enterで `Sato／37／Example Domain`（13.3秒）を確認しました。起動セル再実行で会話6メッセージを保持し、起動中と違うモデルを選んだ場合の停止・選択を戻して復帰も実環境で確認済みです。取得中に一時的に「接続中」となりましたが、再実行せず再接続し同じ処理の継続を確認しました。これらは単発の機能検証で、長時間安定性や通常版との品質比較の保証ではありません。
+
+## 必要な環境
 
 - Google Colabで **A100 80GB・RAM 150GiB以上**のランタイムを利用できること。
 - モデル146.05GiBに加えて作業用10GiB以上の空きディスク。検証時は初期193.3GiBでした。
@@ -72,7 +72,7 @@ Colabだけを中心に使いたい場合は **[Colab有料プラン](https://co
 
 資料は質問と一緒にコンテキストへ渡します。長大な全資料を検索するRAGや自律的なツール実行ではありません。会話が32Kを超える場合は保存して新しい会話に分けてください。
 
-画像対応は `mmproj-F16.gguf` とCPU向け `strata-vision` を使い、llama.cppは `4d756bc72bf00a4aacf410ae15a2d315f3db400d`（b11461）に固定しています。初回は追加ビルドと重み取得が必要です。旧サーバーからの移行時は、起動セルが準備を終えてから対象サーバーを再起動します。
+画像対応は通常版の `mmproj-F16.gguf`／Huihui版の `mmproj-model-bf16.gguf` とCPU向け `strata-vision` を使い、llama.cppは `4d756bc72bf00a4aacf410ae15a2d315f3db400d`（b11461）に固定しています。初回は追加ビルドと重み取得が必要です。
 
 画像経路の実測（同じA100 80GBランタイム）：640×320の図形画像でHTTP 200・`stop`終了、赤い四角と青い円を識別。303入力・10出力トークン、全体19.72秒、decode 12.1 tok/s、CPU画像エンコーダーRSS 1274MiB。単発測定であり、解像度や質問によって変わります。Colabで読み込み済みのPillowを更新するとライブラリが混在するため、セットアップは既存Pillowを再利用します。
 
@@ -103,8 +103,7 @@ Colabだけを中心に使いたい場合は **[Colab有料プラン](https://co
 |---|---|
 | エンジン | isichan-ai/Strata-GLM |
 | エンジンrevision | `461c7ddd39f24fcac31c46c0e1e855d75d1ab997` ＋内蔵修正 |
-| モデル | `unsloth/GLM-5.3-Flash-GGUF` / `UD-IQ4_XS`（通常版） |
-| モデルrevision | `a38483c8cd5df544f53d70fb281afe97369d5ab6` |
+| モデル・revision | [モデルの選択](#モデルの選択)の2種類。いずれもUD-IQ4_XS |
 | コンテキスト | 32,768 |
 | RAM予算 | 120GiB（実際の常駐量とは別） |
 | workers / pcie_frac | 6 / 0.5 |
@@ -115,7 +114,7 @@ Colabだけを中心に使いたい場合は **[Colab有料プラン](https://co
 
 ## 実測と検証範囲
 
-2026-10-12、A100-SXM4-80GB / RAM167.1GiB / CUDA13.0 / Python3.13.15で確認。
+以下は通常版の測定。2026-10-12、A100-SXM4-80GB / RAM167.1GiB / CUDA13.0 / Python3.13.15で確認。Huihui版の結果は冒頭の「モデルの選択」に記載しています。
 
 | 指標 | 修正前 | 最終設定 |
 |---|---:|---:|
@@ -141,12 +140,12 @@ Colabだけを中心に使いたい場合は **[Colab有料プラン](https://co
 | 状態 | 対応 |
 |---|---|
 | GPU/RAMチェックで停止 | 実際の割当を確認。本レシピの対象環境を選ぶ。チェックだけを外して進めない。 |
-| ダウンロード失敗・中断 | セクション3、4を再実行。既存の取得済みファイル・部分ファイルを利用する。 |
+| ダウンロード失敗・中断 | 接続を確認し、処理が終了しているかログで確認。終了済みなら起動セルを再実行し、取得済み・部分ファイルを利用する。 |
 | ビルド失敗 | `/content/Strata-GLM/build-colab.log` の末尾を確認。CUDA/Python変更があれば記録する。 |
-| 起動が遅い | セクション6の直近ログを見る。RAMコピーのレイヤー数が進んでいるか確認。待機がタイムアウトしてもサーバーが消えたとは限らない。 |
+| 起動が遅い | 起動セルの進捗と `build-engine/strata-glm5-serve.log` を見る。RAMコピーのレイヤー数が進んでいるか確認。タイムアウトしてもサーバーが消えたとは限らない。 |
 | 既存サーバーがロード中 | `/content/Strata-GLM/server-colab.log` と `build-engine/strata-glm5-serve.log` を確認。二重起動しない。 |
 | RAM常駐の確認に失敗 | 起動ログを確認。予算指定だけで成功と判断しない。 |
-| ランタイムが消えた | 新しいランタイムで1から。Drive退避を前提にしていないため再取得する。 |
+| ランタイムが消えた | 新しいランタイムでモデルを選び、起動セルを実行。モデルは再取得する。 |
 
 ## 共有と出典
 
@@ -154,6 +153,7 @@ Colabだけを中心に使いたい場合は **[Colab有料プラン](https://co
 
 - エンジン：https://github.com/isichan-ai/Strata-GLM
 - モデル：https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF
+- Huihuiモデル：https://huggingface.co/huihui-ai/Huihui-GLM-5.3-Flash-abliterated-GGUF
 - 元の参考手順：https://drive.google.com/file/d/1eop4zr2ofgRJDfdv6nZL4Lyo7vU_uPeU/view
 
 エンジン由来コードのMITライセンスはリポジトリのLICENSEに記載。モデルの利用条件は配布元を参照してください。このリポジトリはモデル重みを再配布しません。
