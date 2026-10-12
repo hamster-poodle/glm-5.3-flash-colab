@@ -1,6 +1,6 @@
 # GLM-5.3-FlashをColabで会話する — 共有版 v3
 
-同梱の `GLM_5_3_Flash_Strata_Colab_v3.ipynb` をColabへアップロードすると、Strata-GLMのビルド、モデル取得、サーバー起動、チャットまで進められます。修正コードはノートブックに内蔵しており、このリポジトリのローカルファイルは不要です。
+[GitHubのトップページ](https://github.com/hamster-poodle/glm-5.3-flash-colab)にある **Open in Colab** を押すと始められます。ファイルのダウンロードやアップロードは不要です。修正コードはノートブックに内蔵しています。
 
 ## 必要な環境
 
@@ -127,10 +127,10 @@ Colabだけを中心に使いたい場合は **[Colab有料プラン](https://co
 
 ## 共有と出典
 
-共有パッケージはipynb・この文書・LICENSEのみ。モデル重み、認証情報、会話、実行出力は含みません。受け取った人は自分のColabで実行します。使用後のノートブックを再配布する際は、個人の会話や出力を消してください。
+共有するURLは https://github.com/hamster-poodle/glm-5.3-flash-colab です。YouTube概要欄からこのページを開き、Open in Colabを押して、自分のGoogleアカウント・利用枠で実行します。公開リポジトリにモデル重み、認証情報、会話、実行出力は含みません。
 
 - エンジン：https://github.com/isichan-ai/Strata-GLM
 - モデル：https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF
 - 元の参考手順：https://drive.google.com/file/d/1eop4zr2ofgRJDfdv6nZL4Lyo7vU_uPeU/view
 
-エンジン由来コードのMITライセンスは同梱LICENSEおよびノートブック末尾に記載。モデルの利用条件は配布元を参照してください。本パッケージはモデル重みを再配布しません。
+エンジン由来コードのMITライセンスはリポジトリのLICENSEに記載。モデルの利用条件は配布元を参照してください。このリポジトリはモデル重みを再配布しません。
