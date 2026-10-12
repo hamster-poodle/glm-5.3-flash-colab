@@ -1,6 +1,6 @@
 # GLM-5.3-Flash on Google Colab
 
-Strata-GLMでGLM-5.3-Flashを動かし、Colab内でチャットするためのノートブックです。**A100 80GB・RAM約167GiBで動作確認済み。** 修正コードとチャットUIを内蔵しています。
+Strata-GLMでGLM-5.3-Flashを動かし、Colab内でチャットするためのノートブックです。**通常版はA100 80GB・RAM約167GiBで動作確認済み。** 修正コードとチャットUIを内蔵しています。
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hamster-poodle/glm-5.3-flash-colab/blob/main/GLM_5_3_Flash_Strata_Colab_v3.ipynb)
 
@@ -8,7 +8,7 @@ Strata-GLMでGLM-5.3-Flashを動かし、Colab内でチャットするための�
 
 1. 上の **Open in Colab** を押す。
 2. 自分のGoogleアカウントで、ランタイムを **A100 GPU・高RAM** に設定する。
-3. **「チャットを起動」左側の▶ボタンを1回**押す。
+3. **モデルを選び、「チャットを起動」左側の▶ボタンを1回**押す。
 4. 準備完了後、そのセルに表示されるチャットで会話する。
 
 起動済みのGLMは再利用します。新規ランタイムでは必要な準備を自動で進めます。初回にColabの実行確認が出た場合は内容を確認して許可してください。画面は短い案内と起動ボタンだけの2セル構成。コードは隠し、起動が終わると進捗をチャットに置き換えます。詳しい仕様や診断情報は [COLAB.md](COLAB.md) にまとめています。
@@ -20,6 +20,12 @@ Strata-GLMでGLM-5.3-Flashを動かし、Colab内でチャットするための�
 モデル取得は約7〜8分、起動は約6〜9分を観測しました。初回はビルドも必要です。検証時の表示消費率は約6.77 CU/時。自分の利用枠・残りCUを確認してください。
 
 詳細は **[実行手順・環境・トラブル対応（COLAB.md）](COLAB.md)** を参照してください。
+
+## モデルの選択
+
+モデルは **通常版（Unsloth）／Abliterated版（Huihui）** の2択です。Huihui版は [`huihui-ai/Huihui-GLM-5.3-Flash-abliterated-GGUF`](https://huggingface.co/huihui-ai/Huihui-GLM-5.3-Flash-abliterated-GGUF) のUD-IQ4_XSで、Strata-GLM上流の測定に使われた派生版です。このColabでの実ロード・回答はまだ未検証です。
+
+各モデル約157GBのため、切替時は会話を保存してランタイムを削除し、新しいランタイムで選び直してください。別モデルの重み・pack・キャッシュは混用しません。固定版と検証範囲は [COLAB.md](COLAB.md#モデルの選択) に記載しています。
 
 ## 推奨プラン・申込先
 
